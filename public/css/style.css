@@ -1,0 +1,145 @@
+:root {
+  --mainColour: rgb(105, 228, 255);
+  --textColour: black;
+  --contrastColour: white;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--contrastColour);
+  color: var(--mainColour);
+}
+
+header {
+  background-color: var(--mainColour);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--textColour);
+  width: 15vw;
+}
+nav ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 10px 10px;
+  padding: 10px 10px;
+  background-color: var(--mainColour);
+  border-radius: 5px;
+}
+
+nav a {
+  color: var(--textColour);
+  text-decoration: none;
+  font-size: 30px;
+  width: fit-content;
+  white-space: nowrap;
+  text-align: center;
+  margin: 0 auto;
+  display: table;
+}
+aside {
+  border: 1px solid var(--textColour);
+  width: 20vw;
+}
+
+section {
+  width: 60vw;
+  border: 1px solid var(--textColour);
+}
+main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 40px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 30px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+input[type="text"] {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--mainColour);
+}
+
+button[type="submit"] {
+  background-color: var(--mainColour);
+  color: var(--contrastColour);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#registrationMessage {
+  margin-top: 10px;
+}
+
+#countdown {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+footer {
+  background-color: var(--mainColour);
+  color: var(--contrastColour);
+  padding: 10px;
+  text-align: center;
+}
+
+#EventBanner {
+  color: var(--contrastColour);
+}
+
+#partial h2 {
+  font-size: 300%;
+  text-align: center;
+  margin: 20px;
+}
+#partial h4:first-of-type {
+  font-size: 150%;
+  text-align: center;
+  margin: 20px;
+}
+#partial li {
+  font-size: 150%;
+  margin: 8px;
+}
+
+#partial container {
+  display: flex;
+  justify-content: space-between;
+}
