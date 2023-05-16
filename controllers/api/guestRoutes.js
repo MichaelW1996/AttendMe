@@ -14,4 +14,24 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/rsvp", async (req, res) => {
+  console.log("got rsvp request");
+  try {
+    const dbGuestData = await Guest.findAll({
+      where: {
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+      },
+    });
+    if (dbGuestData) {
+      console.log(dbGuestData);
+    } else {
+      //work in progress
+    }
+  } catch (err) {
+    console.error("Error retrieving data:", err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 module.exports = router;
