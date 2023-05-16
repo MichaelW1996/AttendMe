@@ -17,11 +17,7 @@ const hbs = exphbs.create({ helpers }); //where helpers will go
 const sess = {
   //session config
   secret: "Secret session",
-  cookie: {
-    httpOnly: true,
-    secure: false,
-    sameSite: "strict",
-  },
+  cookie: {},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -36,10 +32,10 @@ app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log("now listening"));
+  app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
 });
