@@ -3,7 +3,9 @@ const { Guest, User } = require("../models");
 const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
-  res.render("homepage");
+  res.render("homepage", {
+    logged_in: true,
+  });
 });
 
 router.get("/login", (req, res) => {
@@ -17,15 +19,22 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/contact", (req, res) => {
-  res.render("contact");
+  res.render("contact"),
+    {
+      logged_in: true,
+    };
 });
 
 router.get("/faq", (req, res) => {
-  res.render("faq");
+  res.render("faq", {
+    logged_in: true,
+  });
 });
 
 router.get("/itinerary", (req, res) => {
-  res.render("itinerary");
+  res.render("itinerary", {
+    logged_in: true,
+  });
 });
 
 router.get("/rsvp", withAuth, async (req, res) => {
