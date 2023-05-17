@@ -10,7 +10,11 @@
       <h1 id="EventBanner">AttendMe</h1>
       <nav>
         <!-- Conditionally render login or logout links -->
-
+        {{#if logged_in}}
+          <button class="button" id="logout">logout</button>
+        {{else}}
+          <a href="/login">login</a>
+        {{/if}}
       </nav>
     </header>
     <main>
@@ -48,3 +52,4 @@
     </footer>
   </body>
 </html>
+<script src="/js/logout.js"></script>

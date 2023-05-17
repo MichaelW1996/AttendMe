@@ -3,9 +3,7 @@ const { Guest, User } = require("../models");
 const withAuth = require("../utils/withAuth");
 
 router.get("/", (req, res) => {
-  res.render("homepage", {
-    logged_in: req.session.logged_in,
-  });
+  res.render("homepage");
 });
 
 router.get("/login", (req, res) => {
@@ -30,21 +28,17 @@ router.get("/itinerary", (req, res) => {
   res.render("itinerary");
 });
 
-router.get(
-  "/rsvp",
-  // withAuth,
-  async (req, res) => {
-    try {
-      // Find the logged in user based on the session ID
+router.get("/rsvp", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
 
-      res.render("rsvp", {
-        logged_in: true,
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+    res.render("rsvp", {
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
-);
+});
 //may need a dashboard for authenicated users requiring an auth check (workshop timestamp ~2hrs:45)
 
 module.exports = router;
