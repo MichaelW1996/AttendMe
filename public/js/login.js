@@ -6,14 +6,14 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector("#pass").value.trim();
 
   if (username && password) {
-    // console.log(`got input of ${username} and ${password}`);
+    console.log(`got input of ${username} and ${password}`);
     const response = await fetch("/api/user/login", {
       //check this login fetch
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: { "Content-Type": "application/json" },
     });
-
+    console.log(response);
     if (response.ok) {
       console.log("everything is ok");
       document.location.replace("/rsvp"); //back to the login route
@@ -22,6 +22,9 @@ const loginFormHandler = async (event) => {
     }
   }
 };
+document
+  .querySelector(".loginform")
+  .addEventListener("submit", loginFormHandler);
 
 //this for when we have a register page?
 // const signupFormHandler = async (event) => {
@@ -45,10 +48,6 @@ const loginFormHandler = async (event) => {
 //     }
 //   }
 // };
-
-document
-  .querySelector(".loginform")
-  .addEventListener("submit", loginFormHandler);
 
 // document
 //   .querySelector(".signup-form")

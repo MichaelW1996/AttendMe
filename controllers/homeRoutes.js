@@ -8,17 +8,13 @@ router.get("/", (req, res) => {
 
 router.get("/login", (req, res) => {
   //if user tries to visit admin login page
-  if (!req.session.logged_in) {
+  if (req.session.logged_in) {
     //check if they're logged in
-    // res.redirect("/"); //if so, redirect them to homepage
-    // return;
+    return res.redirect("/"); //if so, redirect them to homepage
+  } else {
+    res.render("login"); //if not render login page
   }
-  res.render("login"); //if not render login page
 });
-
-//router.get("/rsvp", (req, res) => {
-// res.render("rsvp");
-//});
 
 router.get("/contact", (req, res) => {
   res.render("contact");
@@ -32,9 +28,6 @@ router.get("/itinerary", (req, res) => {
   res.render("itinerary");
 });
 
-//router.get("/rsvp", (req, res) => {
-//res.render("rsvp");
-//});
 router.get("/rsvp", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
