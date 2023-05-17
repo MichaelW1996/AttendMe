@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User } = require("../../models");
 //currently only need guests for this, user routes may be usefull if required for organiser management- a user may want to remove another user?
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -49,8 +49,9 @@ router.post("/login", async (req, res) => {
       res
         .status(200)
         .json({ user: dbUserData, message: "You are now logged in!" });
+      console.log("user logged in");
     });
-    console.log("user logged in")
+    console.log("user logged in");
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -58,7 +59,7 @@ router.post("/login", async (req, res) => {
 });
 
 // logout
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -67,7 +68,5 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-
-
 
 module.exports = router;

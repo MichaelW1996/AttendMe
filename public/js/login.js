@@ -6,7 +6,7 @@ const loginFormHandler = async (event) => {
   const password = document.querySelector("#pass").value.trim();
 
   if (username && password) {
-   // console.log(`got input of ${username} and ${password}`);
+    // console.log(`got input of ${username} and ${password}`);
     const response = await fetch("/api/user/login", {
       //check this login fetch
       method: "POST",
@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      console.log('everything is ok')
+      console.log("everything is ok");
       document.location.replace("/rsvp"); //back to the login route
     } else {
       alert("Failed to log in.");
