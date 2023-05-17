@@ -33,5 +33,33 @@ router.post("/rsvp", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+    router.get("/all", async (req, res) => {
+      try {
+        const guestlist = await Guest.findAll();
+        console.log(guestlist);
+        res.json(guestlist);
+      } catch (err) {
+        console.error("Error retrieving data:", err);
+        res.status(500).json({ error: "An error occurred" });
+      }
+    });
+    
+    //post a new guest name
+    router.post("/new", async (req, res) => {
+      const { firstname, lastname, invitedbyID } = req.body;
+      try {
+        const newguest = await Guest.create({
+          firstname,
+          lastname,
+          invitedbyID, //might need to replace if not using session
+        });
+        console.log(newguest);
+        res.status(200).json(newguest);
+      } catch (err) {
+        res.status(400).json(err);
+      }
+    });
+    
+  
 
 module.exports = router;
