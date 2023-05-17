@@ -19,10 +19,9 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/contact", (req, res) => {
-  res.render("contact"),
-    {
-      logged_in: true,
-    };
+  res.render("contact", {
+    logged_in: true,
+  });
 });
 
 router.get("/faq", (req, res) => {
