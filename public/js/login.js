@@ -15,7 +15,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/"); //back to the login route
+      document.location.replace("/rsvp"); //back to the login route
     } else {
       alert("Failed to log in.");
     }

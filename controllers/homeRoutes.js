@@ -7,10 +7,10 @@ router.get("/", (req, res) => {
 
 router.get("/login", (req, res) => {
   //if user tries to visit admin login page
-  if (req.session.logged_in) {
+  if (!req.session.logged_in) {
     //check if they're logged in
-    res.redirect("/"); //if so, redirect them to homepage
-    return;
+    // res.redirect("/"); //if so, redirect them to homepage
+    // return;
   }
   res.render("login"); //if not render login page
 });
