@@ -1,9 +1,9 @@
-<container>
+<container id="RSVP">
   {{#if logged_in}}
     <h1>Guest list</h1>
     <button type="submit" id="seeguestlist">See guest list</button>
     <ul id="guestList" style="display:none"></ul>
-    <h2>put content here for logged in users (show big list of guests)</h2>
+    <h2>Invite someone</h2>
     <form class="invform">
       <label for="invfname">First Name</label>
       <input type="text" id="invfname" name="invfname" />
@@ -13,7 +13,7 @@
     </form>
     <script src="/js/guestlist.js"></script>
   {{else}}
-    <h1>Let us know if you're joining us</h1>
+    <h1>See if you're on the list</h1>
     <form class="RSVPform">
       <label for="guestfname">First Name</label>
       <input type="text" id="guestfname" name="guestfname" />

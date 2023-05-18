@@ -8,14 +8,13 @@
   <body>
     <header>
       <h1 id="EventBanner">AttendMe</h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
+
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
+        <nav>
           <button class="button" id="logout">logout</button>
-        {{else}}
-          <a href="/login">login</a>
-        {{/if}}
-      </nav>
+        </nav>
+      {{/if}}
     </header>
     <main>
       <aside id="aside">
@@ -25,10 +24,10 @@
         {{format_distance}}
         <div id="countdown"></div>
         <p>Price: £25 per person</p>
-        <p>Event starts at 3pm at Birmingham Crystal Event</p>
+        <p>Event starts at 3pm at Utilitia Arena</p>
         <p id="registrationMessage"></p>
         <img
-          src="https://www.mapsinternational.co.uk/pub/media/catalog/product/800x/w/o/world-wall-map-physical-without-flags_wm00912.jpg"
+          src="/images/MapPlaceholder.jpg"
           alt="test image map"
           width="100%"
           height="250px"
@@ -43,8 +42,8 @@
           <li><a href="/rsvp">RSVP</a></li>
           <li><a href="/itinerary">Itinerary</a></li>
           <li><a href="/faq">FAQ</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-          <li><a href="/login">Organiser Login</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/login">Login</a></li>
         </ul>
       </nav>
     </main>
