@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Guest, User } = require("../models");
-const withAuth = require("../utils/withAuth");
 const logincheck = require("../utils/loginmarker");
 
 router.get("/", (req, res) => {
@@ -32,18 +31,18 @@ router.get("/faq", (req, res) => {
 });
 
 router.get("/itinerary", (req, res) => {
-  res.render("itinerary", {
-    logged_in: logincheck(req),
-  });
+  res.render("itinerary", {});
 });
 
-router.get("/rsvp", withAuth, async (req, res) => {
+router.get("/rsvp", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
 
     res.render("rsvp", {
-      logged_in: true,
+      logged_in: logincheck(req),
     });
+
+    //write a thing to render guest list
   } catch (err) {
     res.status(500).json(err);
   }
