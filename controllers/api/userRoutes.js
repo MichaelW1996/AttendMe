@@ -1,8 +1,8 @@
 const router = require("express").Router();
-const { User } = require("../../models");
-//currently only need guests for this, user routes may be usefull if required for organiser management- a user may want to remove another user?
+const { User } = require("../../models"); //requires user model for below
 
 router.post("/", async (req, res) => {
+  //route to create a new user - ideally to allow organisers to add more organisers to help invite guests and spread their workload - THIS HAS NOT BEEN IMPLEMENTED, this route is not called, only tested in insomnia
   try {
     const userData = await User.create(req.body);
 
@@ -16,9 +16,9 @@ router.post("/", async (req, res) => {
     res.status(400).json(err);
   }
 });
-//login
 
 router.post("/login", async (req, res) => {
+  //route to login - used in the login page, or redirected if attempting to access content behind a withAuth check
   console.log(req.body);
   try {
     const dbUserData = await User.findOne({
@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    const validPassword = await dbUserData.checkPassword(req.body.password);
+    const validPassword = await dbUserData.checkPassword(req.body.password); //uses checkpassword to check the hashed password in bCrypt
 
     if (!validPassword) {
       res
@@ -48,8 +48,6 @@ router.post("/login", async (req, res) => {
       req.session.user_id = dbUserData.id;
 
       res.redirect("/");
-      // .status(200)
-      // .json({ user: dbUserData, message: "You are now logged in!" });
       console.log("user logged in");
     });
   } catch (err) {
@@ -58,7 +56,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// logout
+// logout route, called by log out button in main handlebars, which only appears if user is logged in
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

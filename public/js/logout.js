@@ -1,6 +1,8 @@
 const logout = async (event) => {
+  //when the user clicks logout
   event.preventDefault();
   const response = await fetch("/api/user/logout", {
+    //send request to log out route
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
@@ -12,4 +14,4 @@ const logout = async (event) => {
   }
 };
 
-document.querySelector("#logout").addEventListener("click", logout);
+document.querySelector("#logout").addEventListener("click", logout); //puts trigger on log out button

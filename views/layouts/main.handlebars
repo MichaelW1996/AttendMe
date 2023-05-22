@@ -34,7 +34,8 @@
         />
       </aside>
       <section id="partial">
-        {{{body}}}
+        {{!-- where our patials go, depending on which is rendered in homeroute --}}
+        {{{body}}} 
       </section>
       <nav>
         <ul>
@@ -53,5 +54,6 @@
   </body>
 </html>
 {{#if logged_in}}
+{{!-- only load logout script if the user is logged in, a user who is already logged out would not have a logout button so this script caused errors in testing --}}
   <script src="/js/logout.js"></script>
 {{/if}}

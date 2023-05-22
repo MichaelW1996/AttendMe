@@ -1,5 +1,7 @@
 <container id="RSVP">
+  {{! gives different data depending on if the user is logged in }}
   {{#if logged_in}}
+    {{! logged in users get to see a guestlist button, and invite function }}
     <h1>Guest list</h1>
     <button type="submit" id="seeguestlist">See guest list</button>
     <ul id="guestList" style="display:none"></ul>
@@ -13,6 +15,7 @@
     </form>
     <script src="/js/guestlist.js"></script>
   {{else}}
+    {{! non logged in users get a form to check if they're invited }}
     <h1>See if you're on the list</h1>
     <form class="RSVPform">
       <label for="guestfname">First Name</label>

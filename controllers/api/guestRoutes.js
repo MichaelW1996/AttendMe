@@ -1,12 +1,11 @@
 const router = require("express").Router();
-const { Guest } = require("../../models");
-const withAuth = require("../../utils/withAuth");
+const { Guest } = require("../../models"); //get the Guest model as this is needed for the below queires
+const withAuth = require("../../utils/withAuth"); //require the authorisation check helper
 
-//get all guests invited, ideally from a logged in user
+//get all guests invited, only possible from a logged in user - withAuth checks for logged in status
 router.get("/all", withAuth, async (req, res) => {
   try {
     const guestlist = await Guest.findAll();
-    console.log(guestlist);
     res.status(200).json(guestlist);
   } catch (err) {
     console.error("Error retrieving data:", err);
@@ -14,16 +13,15 @@ router.get("/all", withAuth, async (req, res) => {
   }
 });
 
-//post a new guest name, ideally a logged in user
+//post a new guest name, only from a logged in user
 router.post("/new", withAuth, async (req, res) => {
-  const { firstname, lastname, invitedbyID } = req.body;
+  const { firstname, lastname } = req.body;
   try {
     const newguest = await Guest.create({
       firstname,
       lastname,
-      invitedbyID: req.session.user_id, //might need to replace if not using session
+      invitedbyID: req.session.user_id, //get the ID for the new guest from the session - this means the new guest will display as being invited by the user logged in at the time
     });
-    console.log(newguest);
     res.status(200).json(newguest);
   } catch (err) {
     res.status(400).json(err);
@@ -31,6 +29,7 @@ router.post("/new", withAuth, async (req, res) => {
 });
 
 router.post("/rsvp", async (req, res) => {
+  //route for guests to check they are invited - not this is not protected by withAuth, allowing for those without logins to check if they are invited
   console.log("got rsvp request");
   try {
     const dbGuestData = await Guest.findOne({
