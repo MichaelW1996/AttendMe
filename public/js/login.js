@@ -3,20 +3,17 @@ const loginFormHandler = async (event) => {
   console.log("received login");
 
   const username = document.querySelector("#Uname").value.trim();
-  const password = document.querySelector("#pass").value.trim();
+  const password = document.querySelector("#pass").value.trim(); //get the user details entered
 
   if (username && password) {
-    console.log(`got input of ${username} and ${password}`);
     const response = await fetch("/api/user/login", {
-      //check this login fetch
+      //sends request to login route
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username, password }), //using the details provided
       headers: { "Content-Type": "application/json" },
     });
-    console.log(response);
     if (response.ok) {
-      console.log("everything is ok");
-      document.location.replace("/rsvp"); //back to the login route
+      document.location.replace("/rsvp"); //send user to the RSVP page if successful
     } else {
       alert("Failed to log in.");
     }
@@ -26,7 +23,7 @@ document
   .querySelector(".loginform")
   .addEventListener("submit", loginFormHandler);
 
-//this for when we have a register page?
+//this for when we have a register page
 // const signupFormHandler = async (event) => {
 //   event.preventDefault();
 

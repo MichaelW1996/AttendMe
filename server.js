@@ -12,7 +12,7 @@ const helpers = require("./utils/helpers.js");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ helpers }); //where helpers will go
+const hbs = exphbs.create({ helpers });
 
 const sess = {
   //session config

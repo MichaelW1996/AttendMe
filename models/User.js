@@ -29,22 +29,19 @@ User.init(
       validate: {
         len: [6],
       },
-      //validate here special characters
     },
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      //validate to have no spaces or special characters?
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      //validate to have no spaces or special characters?
     },
   },
   {
     hooks: {
-      //hashes user passwords
+      //hashes user passwords on creation or update
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
@@ -57,7 +54,7 @@ User.init(
         return updatedUserData;
       },
     },
-    //hooks and stuff
+    //hooks
     sequelize,
     freezeTableName: true,
     underscored: true,

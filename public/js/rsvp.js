@@ -1,14 +1,15 @@
 const RSVPFormHandler = async (event) => {
+  //for non logged in users
   event.preventDefault();
 
-  const firstname = document.querySelector("#guestfname").value.trim();
+  const firstname = document.querySelector("#guestfname").value.trim(); //get name entered by guest
   const lastname = document.querySelector("#guestlname").value.trim();
 
   if (firstname && lastname) {
     try {
       const response = await fetch("/api/guest/rsvp", {
         method: "POST",
-        body: JSON.stringify({ firstname, lastname }),
+        body: JSON.stringify({ firstname, lastname }), //send the guest name to the rsvp route
         headers: { "Content-Type": "application/json" },
       });
 
@@ -19,7 +20,7 @@ const RSVPFormHandler = async (event) => {
         }
         return { firstname, lastname }; //gives back the names if guest is on list
       } else {
-        alert("No guests of this name found");
+        alert("No guests of this name found"); //otherwise tells guest they're not on the list
       }
     } catch (err) {
       console.error("Error:", err);

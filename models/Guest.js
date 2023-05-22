@@ -1,14 +1,14 @@
 const { Model, DataTypes } = require("sequelize"); // destructure to extend model and datatypes
 const sequelize = require("../config/connection"); // so sequalise knows where to connect and send request to
 
-//this will be used for guests RSVP'ing
+//this will be used to store guest information
 
 class Guest extends Model {
   //table name
 }
 
 Guest.init(
-  //initialise a table?
+  //initialise the guest table
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,12 +19,10 @@ Guest.init(
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
-      //validate to have no spaces or special characters?
     },
     lastname: {
       type: DataTypes.STRING,
       allowNull: false,
-      //validate to have no spaces or special characters?
     },
     invitedbyID: {
       type: DataTypes.INTEGER,
@@ -34,11 +32,11 @@ Guest.init(
       },
     },
     attending: {
-      type: DataTypes.BOOLEAN, //1 us attending, 0 is not
+      type: DataTypes.BOOLEAN, //1 us attending, 0 is not, this feild was intended to allow user to confirm attendance, however this was not implemented at time of writing
     },
   },
   {
-    //hooks and stuff
+    //hooks
     sequelize,
     freezeTableName: true,
     underscored: true,

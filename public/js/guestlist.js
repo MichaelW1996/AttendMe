@@ -3,6 +3,7 @@ const guestlistHandler = async (event) => {
 
   try {
     const response = await fetch("/api/guest/all", {
+      //call the guest all route - this returns full guestlist to logged in user
       method: "GET",
     });
 
@@ -24,8 +25,9 @@ const guestlistHandler = async (event) => {
 };
 
 document.querySelector("#seeguestlist").addEventListener("click", (event) => {
+  //button to show guestlist - only shown to organisers
   event.preventDefault(); // prevents a reset
-  guestlistHandler(event) // checks for guestlist
+  guestlistHandler(event) // starts the function above
     .then((response) => {
       if (response !== null) {
         // manages the response
@@ -34,7 +36,7 @@ document.querySelector("#seeguestlist").addEventListener("click", (event) => {
         // Set the innerHTML of the container to display the variables
         container.innerHTML = ""; // clear the container is it has content alreadt
         response.forEach((guest) => {
-          const { firstname, lastname } = guest; // destructure first and last name
+          const { firstname, lastname } = guest; // destruct first and last name
           const list = document.createElement("li");
           list.textContent = `${firstname} ${lastname}`;
           container.appendChild(list);
@@ -49,6 +51,7 @@ document.querySelector("#seeguestlist").addEventListener("click", (event) => {
 });
 
 const newinviteHandler = async (event) => {
+  //handles a new invite request
   event.preventDefault();
 
   const firstname = document.querySelector("#invfname").value.trim();
@@ -58,7 +61,7 @@ const newinviteHandler = async (event) => {
     try {
       const response = await fetch("/api/guest/new", {
         method: "POST",
-        body: JSON.stringify({ firstname, lastname }),
+        body: JSON.stringify({ firstname, lastname }), //sends the new invitee name in a json to the back end
         headers: { "Content-Type": "application/json" },
       });
 
@@ -77,8 +80,9 @@ const newinviteHandler = async (event) => {
 };
 
 document.querySelector(".invform").addEventListener("submit", (event) => {
+  //when new invite button is pressed
   event.preventDefault(); //prevents a reset
-  newinviteHandler(event) //checks sends invitee name to back end
+  newinviteHandler(event) //starts the fucntion above
     .catch((error) => {
       console.error("Error:", error);
       alert("An error occurred");

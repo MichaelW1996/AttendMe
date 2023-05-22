@@ -8,6 +8,3 @@ const withAuth = (req, res, next) => {
 };
 
 module.exports = withAuth;
-
-//to use for logged in requests, possibly for adding guests or FAQ  (perhaps some kind of dashboard?)
-//dashboard features list of the users invited guests and their rsvp status

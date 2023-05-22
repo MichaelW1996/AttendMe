@@ -1,10 +1,11 @@
 const router = require("express").Router();
-const { Guest, User } = require("../models");
 const logincheck = require("../utils/loginmarker");
 
 router.get("/", (req, res) => {
+  //default route
   res.render("homepage", {
-    logged_in: logincheck(req),
+    //load the homepage
+    logged_in: logincheck(req), //passes in the logged in status, this helps with displaying the login/logout button at top of page ( this is repeated in all partials)
   });
 });
 
@@ -35,18 +36,10 @@ router.get("/itinerary", (req, res) => {
 });
 
 router.get("/rsvp", async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-
-    res.render("rsvp", {
-      logged_in: logincheck(req),
-    });
-
-    //write a thing to render guest list
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.render("rsvp", {
+    logged_in: logincheck(req), //passing in the logged in status here also changed the behaviour to show different functions for logged in users compared to non-logged in guests
+  });
 });
-//may need a dashboard for authenicated users requiring an auth check (workshop timestamp ~2hrs:45)
+//future development - create route for a new page allowing authenicated users to create new authenicated users
 
 module.exports = router;
